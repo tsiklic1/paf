@@ -1,46 +1,58 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def jeLiBroj(unos):
-    br = 0
-    for i in unos:
-        if not(i.isdigit()):
-            br += 1
-            break
-    if br == 0 and len(unos) != 0:
-        return True
-    
-    else:
-        return False
+    try: 
+        broj = int(unos)
+        return "int"
+    except ValueError:
+        try: 
+            broj = float(unos)
+            return "float"
+        except ValueError:
+            return "greska"
+
+def petljaZaUnos(unos):
+    while jeLiBroj(unos) == "greska":
+        unos = input("Unijeli ste nešto što nije broj. Pokušajte ponovo. ")
+    tip = jeLiBroj(unos)
+    if tip == "int":
+        broj = int(unos)
+    elif tip == "float":
+        broj = float(unos)
+    return broj
+
 
 def jednadbaPravca(x1, y1, x2, y2):
     k = (y2-y1)/(x2-x1)
     l = k*(-1*x1) + y1
     print("y = ", k, "x + ", l)
+    lista = [k,l]
+    return lista
 
-def ekranIliPdf(x1, y1, x2, y2):
+def ekranIliPdf(lista):
     unos = input("Za ekran upišite 1, za PDF 2: ")
-    plt.plot([x1,y1,x2,y2])
+    x = np.linspace(-5,5,100)
+    y = lista[0]*x + lista[1]
+    plt.plot(x, y)
     if unos == "1":
         plt.show()
     else:
         plt.savefig("plot.pdf")
 
+
+
 x1 = input("x1 ")
-while jeLiBroj(x1) == False:
-    x1 = input("Unijeli ste nešto što nije broj. Pokušajte ponovo. ")
-x1 = int(x1)
+x1 = petljaZaUnos(x1)
 y1 = input("y1 ")
-while jeLiBroj(y1) == False:
-    y1 = input("Unijeli ste nešto što nije broj. Pokušajte ponovo. ")
-y1 = int(y1)
+y1 = petljaZaUnos(y1)
 x2 = input("x2 ")
-while jeLiBroj(x2) == False:
-    x2 = input("Unijeli ste nešto što nije broj. Pokušajte ponovo. ")
-x2 = int(x2)
+x2 = petljaZaUnos(x2)
+while x2 == x1:
+    x2 = input("Unijeli ste 2 iste x koordinate za različite točke i jednadžba neće raditi. Pokušajte ponovo.")
+    x2 = petljaZaUnos(x2)
 y2 = input("y2 ")
-while jeLiBroj(y2) == False:
-    y2 = input("Unijeli ste nešto što nije broj. Pokušajte ponovo. ")
-y2 = int(y2)
+y2 = petljaZaUnos(y2)
 
 
-ekranIliPdf(x1,y1,x2,y2)
+ekranIliPdf(jednadbaPravca(x1, y1, x2, y2))

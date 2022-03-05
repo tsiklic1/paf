@@ -32,9 +32,11 @@ def jednadbaPravca(x1, y1, x2, y2):
 
 def ekranIliPdf(lista):
     unos = input("Za ekran upišite 1, za PDF 2: ")
-    x = np.linspace(-5,5,100)
+    x = np.linspace(x1-5,x2+5,100)
     y = lista[0]*x + lista[1]
     plt.plot(x, y)
+    plt.plot([x1,x2], [y1,y2], "ro")
+    
     if unos == "1":
         plt.show()
     else:

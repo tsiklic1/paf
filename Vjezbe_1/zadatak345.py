@@ -40,7 +40,8 @@ def ekranIliPdf(lista):
     if unos == "1":
         plt.show()
     else:
-        plt.savefig("plot.pdf")
+        ime = input("Unesite ime pod kojim želite spremiti file.")
+        plt.savefig(ime + ".pdf")
 
 
 

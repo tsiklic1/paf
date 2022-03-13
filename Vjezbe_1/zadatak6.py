@@ -35,13 +35,14 @@ def polozaj(tocka, kruznica):
     axes.plot(x, y2, "c")
     axes.plot([kruznica[0]],[kruznica[1]], "bo")
     axes.plot([tocka[0]],[tocka[1]], "ro")
-    plt.show()
+    unos = input("Za ekran upišite 1, za PDF 2: ")
+    
+    if unos == "1":
+        plt.show()
+    else:
+        ime = input("Unesite ime pod kojim želite spremiti file.")
+        plt.savefig(ime + ".pdf")
 
-    # plt.plot(x, y1, "c")
-    # plt.plot(x, y2, "c")
-    # plt.plot([kruznica[0]],[kruznica[1]], "bo")
-    # plt.plot([tocka[0]],[tocka[1]], "ro")
-    # plt.show()
 
 polozaj(tocka, kruznica)
     

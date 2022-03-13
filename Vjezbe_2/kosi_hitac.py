@@ -1,6 +1,5 @@
 #kosi hitac
 
-#javlja neki memory error kod maks brzine
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -129,7 +128,14 @@ def meta(p, q, r, v0, kut, y0):
     if pogodilo:
         print("Projektil je pogodio metu.")
     else:
-        print("Projektil nije pogodio metu")
+        d = ((listaX[0] - p)**2 + (listaY[0] - q)**2)**0.5 - r
+        for i in listaX:
+            for j in listaY:
+                temp = ((i - p)**2 + (j - q)**2)**0.5 - r
+                if temp < d:
+                    d = temp
+        
+        print("Projektil nije pogodio metu, a pokraj mete je prošao na najmanjoj udaljenosti: ", d)
 
     meta = plt.Circle((p, q), r, color = "red")
     fig, axs = plt.subplots()

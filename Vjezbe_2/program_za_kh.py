@@ -2,7 +2,7 @@ import kosi_hitac as kh
 
 v0 = 5
 kut = 0.7
-y0 = 8
+y0 = 4
 p = 4
 q = 7
 r = 1

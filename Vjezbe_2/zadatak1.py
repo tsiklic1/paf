@@ -30,11 +30,6 @@ for k in listaV:
     listaX.append(x)
 
 
-# print(t)
-# print(listaV)
-# print(listaX)
-# print(listaA)
-
 fig, axs = plt.subplots(3, figsize = (6,6))
 axs[0].plot(t, listaA)
 axs[1].plot(t, listaV)

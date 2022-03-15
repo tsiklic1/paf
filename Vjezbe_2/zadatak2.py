@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 v0 = 5
-kut = 0.6
+stupnjevi = 20
+kut = stupnjevi*np.pi/180
 
 v0x = np.cos(kut) * v0
 v0y = np.sin(kut) * v0

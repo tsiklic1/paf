@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def polozaj(smjer, listaV, vrijeme):
-    n = 10 * vrijeme
+    n = 100 * vrijeme
     dt = 0.01
     listaSmjer = []
     for i in range(n):
@@ -20,15 +20,15 @@ def jednoliko_gibanje(f, m):
     a = f/m
     listaA = []
     t = []
-    for i in range(10):
+    for i in range(1000):
         t.append(korak*i)
 
-    for i in range(10):
+    for i in range(1000):
         listaA.append(a)
 
     v = 0
     listaV = [] 
-    for j in range(10):
+    for j in range(1000):
         v = v + a*korak
         listaV.append(v)
 
@@ -59,7 +59,7 @@ def kosi_hitac(v0, kut, vrijeme):
 
     a = -9.81
     dt = 0.01
-    n = vrijeme * 10
+    n = vrijeme * 100
 
     listaVx = []
     vy = v0y
@@ -69,7 +69,7 @@ def kosi_hitac(v0, kut, vrijeme):
         listaVx.append(v0x)
         vy = vy + a*dt
         listaVy.append(vy)
-        t.append(i * 0.1)
+        t.append(i * dt)
 
     x = 0
     y = 0

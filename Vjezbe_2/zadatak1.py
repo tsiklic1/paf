@@ -4,22 +4,22 @@ import matplotlib.pyplot as plt
 # f = int(input("Iznos sile  (u N): "))
 # m = int(input("Masa (u kg): "))
 
-f = 5
+f = 10
 m = 1
 
 korak = 0.01
 a = f/m
 listaA = []
 t = []
-for i in range(10):
+for i in range(1000):
     t.append(korak*i)
 
-for i in range(10):
+for i in range(1000):
     listaA.append(a)
 
 v = 0
 listaV = [] 
-for j in range(10):
+for j in range(1000):
     v = v + a*korak
     listaV.append(v)
 

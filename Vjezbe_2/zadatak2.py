@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-v0 = 5
-stupnjevi = 20
+v0 = 20
+stupnjevi = 40
 kut = stupnjevi*np.pi/180
 
 v0x = np.cos(kut) * v0
@@ -9,7 +9,7 @@ v0y = np.sin(kut) * v0
 
 a = -9.81
 dt = 0.01
-n = 100
+n = 1000
 
 listaVx = []
 vy = v0y
@@ -19,7 +19,7 @@ for i in range(n):
     listaVx.append(v0x)
     vy = vy + a*dt
     listaVy.append(vy)
-    t.append(i * 0.1)
+    t.append(i * dt)
 
     
 

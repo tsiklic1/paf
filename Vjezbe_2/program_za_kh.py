@@ -7,7 +7,7 @@ p = 4
 q = 7
 r = 1
 
-# kh.putanja(v0, kut, y0)
+kh.putanja(v0, kut, y0)
 hmaks = kh.maks_visina(v0, kut, y0)
 vmaks = kh.maks_brzina(v0, kut, y0)
 d = kh.domet(v0, kut, y0)

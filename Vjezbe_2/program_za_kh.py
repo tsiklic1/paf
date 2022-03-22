@@ -4,7 +4,7 @@ v0 = 5
 kut = 0.7
 y0 = 4
 p = 4
-q = 7
+q = 2
 r = 1
 
 kh.putanja(v0, kut, y0)

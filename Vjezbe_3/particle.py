@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#možda stavit da se plota i kad se promaši meta
+
 class Particle:
     def __init__(self):
         self.listaX = []
@@ -45,9 +47,6 @@ class Particle:
         while self.listaY[-1] >= 0:
             self.__move()
 
-        if self.listaY[-1] < 0:
-            self.listaY.pop()
-            self.listaX.pop()
 
         fig, axs = plt.subplots(1, figsize = (6,6))
         axs.plot(self.listaX, self.listaY)
@@ -66,9 +65,6 @@ class Particle:
         while self.listaY[-1] >= 0:
             self.__move()
 
-        if self.listaY[-1] < 0:
-            self.listaVy.pop()
-
         maksVy = self.listaVy[0]
         for i in self.listaVy:
             if abs(i) > maksVy:
@@ -86,7 +82,7 @@ class Particle:
             if self.pocetnaV*self.brojac < 100:
                 self.reset()
                 self.brojac += 1
-                self.set_initial_conditions(self.pocetnaV*self.brojac, kut, x0, y0, 0.01)
+                self.set_initial_conditions(self.pocetnaV*self.brojac, kut, x0, y0, 0.1)
                 while self.listaY[-1] >= 0:
                     self.__move()
                 
@@ -97,21 +93,32 @@ class Particle:
                                 print("Brzina potrebna da bi se pogodila meta za kut", kut, "rad je: ", self.pocetnaV*self.brojac, "m/s")
                                 break
                 
-                #print(self.pocetnaV*self.brojac)
+                
 
-                if self.pogodilo:
-                    meta = plt.Circle((p, q), r, color = "red")
-                    fig, axs = plt.subplots()
-                    axs.set_aspect("equal")
-                    axs.add_patch(meta)
-                    axs.plot(self.listaX, self.listaY)
-                    plt.setp(axs, xlabel = "x (m)")
-                    plt.setp(axs, ylabel = "y (m)")
-                    plt.show()
+                # if self.pogodilo:
+                #     meta = plt.Circle((p, q), r, color = "red")
+                #     fig, axs = plt.subplots()
+                #     axs.set_aspect("equal")
+                #     axs.add_patch(meta)
+                #     axs.plot(self.listaX, self.listaY)
+                #     plt.setp(axs, xlabel = "x (m)")
+                #     plt.setp(axs, ylabel = "y (m)")
+                #     plt.show()
+                    
+                #print(self.pocetnaV*self.brojac)
 
             else:
                 print("Program je zaustavljen jer je potrebna prevelika brzina (>100m/s) \n ili je zadan nemoguć slučaj (meta iza ili iznad projektila).")
                 break
+
+        meta = plt.Circle((p, q), r, color = "red")
+        fig, axs = plt.subplots()
+        axs.set_aspect("equal")
+        axs.add_patch(meta)
+        axs.plot(self.listaX, self.listaY)
+        plt.setp(axs, xlabel = "x (m)")
+        plt.setp(axs, ylabel = "y (m)")
+        plt.show()
                 
     def angle_to_hit_target(self, v0, p, q, r, x0 = 0, y0 = 0):
         self.pogodilo = False
@@ -134,18 +141,27 @@ class Particle:
                                     print("Potreban kut je", self.pocetniKut * self.brojac, "rad")
                                     break
 
-                if self.pogodilo:
-                    meta = plt.Circle((p, q), r, color = "red")
-                    fig, axs = plt.subplots()
-                    axs.set_aspect("equal")
-                    axs.add_patch(meta)
-                    axs.plot(self.listaX, self.listaY)
-                    plt.setp(axs, xlabel = "x (m)")
-                    plt.setp(axs, ylabel = "y (m)")
-                    plt.show()
+                # if self.pogodilo:
+                #     meta = plt.Circle((p, q), r, color = "red")
+                #     fig, axs = plt.subplots()
+                #     axs.set_aspect("equal")
+                #     axs.add_patch(meta)
+                #     axs.plot(self.listaX, self.listaY)
+                #     plt.setp(axs, xlabel = "x (m)")
+                #     plt.setp(axs, ylabel = "y (m)")
+                #     plt.show()
             else:
                 print("Zadana je premala brzina i nikad neće pogodit ili je meta krivo postavljena (iza projektila)")
                 break
+
+        meta = plt.Circle((p, q), r, color = "red")
+        fig, axs = plt.subplots()
+        axs.set_aspect("equal")
+        axs.add_patch(meta)
+        axs.plot(self.listaX, self.listaY)
+        plt.setp(axs, xlabel = "x (m)")
+        plt.setp(axs, ylabel = "y (m)")
+        plt.show()
 
     def ovisnostDometa(self, v0):
         self.listaKutova = list(np.arange(0, np.pi/2, 0.01))
@@ -183,8 +199,7 @@ p1.set_initial_conditions(5, 0.1, 0, 0)
 #print(p1.range())
 #p1.plot_trajectory()
 #print(p1.total_time())
-# #p1.max_speed()
-# p1.relativna_pogreska()
+#p1.max_speed()
 #p1.velocity_to_hit_target(0.7, 10, 2, 1, 0, 0)
 #p1.angle_to_hit_target(14, 4, 2, 1)
 #p1.ovisnostDometa(5)

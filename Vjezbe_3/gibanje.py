@@ -2,15 +2,15 @@ import particle as prt
 import numpy as np
 import matplotlib.pyplot as plt
 p1 = prt.Particle()
-# p1.set_initial_conditions(8, 0.9, 0, 2)
-# print("Domet: ", p1.range(), "m")
-# p1.plot_trajectory()
-# print("Ukupno vrijeme: ", p1.total_time(), "s")
-# p1.max_speed()
-#p1.velocity_to_hit_target(0.8, 2, 8, 1, 0, 0)
-#p1.angle_to_hit_target(10, 3, 4, 1)
-# p1.ovisnostDometa(6)
-# p1.ovisnostVremena(6)
+p1.set_initial_conditions(5, np.pi/3, 0, 0, 0.001)
+print("Domet: ", p1.range(), "m")
+p1.plot_trajectory()
+print("Ukupno vrijeme: ", p1.total_time(), "s")
+p1.max_speed()
+p1.velocity_to_hit_target(0.8, 2, 8, 1, 0, 0)
+p1.angle_to_hit_target(10, 3, 4, 1)
+p1.ovisnostDometa(6)
+p1.ovisnostVremena(6)
 
 #Dio za graf ovisnosti greske o dt
 listaDt = list(np.linspace(0.001,0.1,200))

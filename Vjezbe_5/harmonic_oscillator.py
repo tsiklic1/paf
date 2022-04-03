@@ -81,6 +81,7 @@ class harmonic_oscillator:
         self.listaZaPeriod = []
 
         self.polozaj()
+        print(self.listaX)
         if self.listaX[0] > 0:
 
             for i in range(len(self.listaX)):
@@ -88,13 +89,27 @@ class harmonic_oscillator:
                     self.listaZaPeriod.append(self.listaT[i])
                     self.brojac = i
                     break
-        
-        for i in range(self.brojac, len(self.listaX)):
+            
+            for i in range(self.brojac, len(self.listaX)):
                 if self.listaX[i] > 0:
                     self.listaZaPeriod.append(self.listaT[i])
                     break
         
-        print("Period titranja je: ", (self.listaZaPeriod[1] - self.listaZaPeriod[0])*2)
+        elif self.listaX[0] < 0:
+            
+            for i in range(len(self.listaX)):
+                #print(self.listaX[i])
+                if self.listaX[i] > 0:
+                    self.listaZaPeriod.append(self.listaT[i])
+                    self.brojac = i
+                    break
+        
+            for i in range(self.brojac, len(self.listaX)):
+                    if self.listaX[i] < 0:
+                        self.listaZaPeriod.append(self.listaT[i])
+                        break
+   
+        #print("Period titranja je: ", (self.listaZaPeriod[1] - self.listaZaPeriod[0])*2)
 
         return [((self.listaZaPeriod[1] - self.listaZaPeriod[0])*2), self.dt]
     

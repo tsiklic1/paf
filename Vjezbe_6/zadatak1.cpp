@@ -105,9 +105,7 @@ int main(){
     // interval(lista, 1, 4, 5);
     // obrat(lista, 5);
     // zamjena(lista, 2, 3);
-    // for(int i = 0; i < 5; i++){
-    //     std::cout << lista[i];
-    // }
+
 
     //sortiranje(nesortirana, 5);
     //sustav(2, 3, 2, 2, 3, 7);

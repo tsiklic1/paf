@@ -75,26 +75,25 @@ class ProjectileDrop:
             self.__move_sa_vjetrom()
 
         self.domet = self.listaX[-1] - self.listaX[0]
-        print(self.domet)
+        #print(self.domet)
 
         self.pocetniX = self.x - self.domet
         #self.krajnjiX = self.x + self.sirina - self.domet
 
         self.reset()
         self.listaX = [self.pocetniX]
-        print(self.listaX)
-        print(self.listaY)
+        # print(self.listaX)
+        # print(self.listaY)
         while self.listaY[-1] >= 0:
             self.__move_sa_vjetrom()
         
         plt.plot(self.listaX, self.listaY)
         plt.show()
-        
-        self.reset()
 
+        self.reset()
         while self.listaX[-1] < self.pocetniX:
             self.__move()
-        print(self.listaT[-1])
+        print("Mora ispustiti u trenutku t = ", self.listaT[-1])
 
 
        

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math
 
 h1 = osc.harmonic_oscillator(2, 10, 0.1, 0.3)
-#h1.plot_trajectory()
+h1.plot_trajectory()
 
 #Ovaj dio je za preciznost ovisno o dt
 

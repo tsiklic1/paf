@@ -6,7 +6,7 @@ class oscilator{
     private:
 
     double x, v;
-    double dt = 1;
+    double dt = 0.01;
 
     vector<double> listaT;
     vector<double> listaX;
@@ -21,7 +21,7 @@ class oscilator{
 
     oscilator(double k, double m, double x0, double v0, double t);
 
-    double k, m, x0, v0, t;
+    double _k, _m, _x0, _v0, _t;
 
     double x_t();
     double v_t();

@@ -106,6 +106,9 @@ class Projectile:
         self.theta = 0.01
         self.brojac = 0
         self.pocetniKut = 0.01
+        self.p = p
+        self.q = q
+        self.r = r
         while self.pogodilo == False:
             if self.pocetniKut * self.brojac < np.pi / 2:
                 self.reset()
@@ -126,14 +129,14 @@ class Projectile:
                 print("Premala brzina da bi se pogodilo")
                 self.pogodilo = True
 
-        meta = plt.Circle((p, q), r, color = "red")
-        fig, axs = plt.subplots()
-        axs.set_aspect("equal")
-        axs.add_patch(meta)
-        axs.plot(self.listaX, self.listaY)
-        plt.setp(axs, xlabel = "x (m)")
-        plt.setp(axs, ylabel = "y (m)")
-        plt.show()
+        # meta = plt.Circle((p, q), r, color = "red")
+        # fig, axs = plt.subplots()
+        # axs.set_aspect("equal")
+        # axs.add_patch(meta)
+        # axs.plot(self.listaX, self.listaY)
+        # plt.setp(axs, xlabel = "x (m)")
+        # plt.setp(axs, ylabel = "y (m)")
+        #plt.show()
 
 # p1 = Projectile()
 # #p2 = Projectile()

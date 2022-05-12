@@ -1,4 +1,3 @@
-from tkinter.messagebox import askokcancel
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -15,7 +14,11 @@ class Projectile:
 
 
 
-    def set_initial_conditions(self, v0, kut, x0, y0, gustoca, koefTr, povrsina, m, dt = 0.01):
+    def set_initial_conditions(self, v0, kut, x0, y0, gustoca, koefTr, m, povrsina = 0.25, dt = 0.01):
+        self.v0 = v0
+        self.kut = kut
+        self.x0 = x0
+        self.y0 = y0
         self.listaX.append(x0)
         self.listaY.append(y0)
         self.listaVx.append(v0 * np.cos(kut))
@@ -26,6 +29,13 @@ class Projectile:
         self.povrsina = povrsina
         self.dt = dt
         self.m = m
+
+    def oblik(self, oblik, r, a):
+        if oblik == "kocka":
+            self.povrsina = a**2
+        else:
+            self.povrsina = r**2 * np.pi
+
 
     def reset(self):
         self.listaX = []
@@ -90,6 +100,40 @@ class Projectile:
         while self.listaY[-1] >= 0:
             self.__move_rk4()
         return self.listaX[-1] - self.listaX[0]
+
+    def angle_to_hit_target(self, p, q, r, v0, x0, y0, gustoca, koefTr, m, povrsina):
+        self.pogodilo = False
+        self.theta = 0.01
+        self.brojac = 0
+        self.pocetniKut = 0.01
+        while self.pogodilo == False:
+            if self.pocetniKut * self.brojac < np.pi / 2:
+                self.reset()
+                self.brojac += 1
+                self.set_initial_conditions(v0, self.pocetniKut * self.brojac, x0, y0, gustoca, koefTr, m, povrsina) 
+
+                while self.listaY[-1] >= 0:
+                    self.__move_rk4()
+
+                    for i in range(len(self.listaX)):
+                        
+                        if self.pogodilo == False:
+                            if (self.listaX[i] - p) ** 2 + (self.listaY[i] - q) ** 2 < r**2:
+                                self.pogodilo = True
+                                print("Potreban kut je", self.pocetniKut * self.brojac, "rad")
+                                break
+            else:
+                print("Premala brzina da bi se pogodilo")
+                self.pogodilo = True
+
+        meta = plt.Circle((p, q), r, color = "red")
+        fig, axs = plt.subplots()
+        axs.set_aspect("equal")
+        axs.add_patch(meta)
+        axs.plot(self.listaX, self.listaY)
+        plt.setp(axs, xlabel = "x (m)")
+        plt.setp(axs, ylabel = "y (m)")
+        plt.show()
 
 # p1 = Projectile()
 # #p2 = Projectile()

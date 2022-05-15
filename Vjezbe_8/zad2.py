@@ -13,3 +13,5 @@ p2.plot_rk4()
 plt.plot(p1.listaX, p1.listaY)
 plt.plot(p2.listaX, p2.listaY)
 plt.show()
+
+#Što je manja masa Eulerova metoda je sve nepreciznija u odnosu na rk4

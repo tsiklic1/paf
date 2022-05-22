@@ -39,7 +39,7 @@ class Projectile:
         self.listaVy.append(self.listaVy[-1] + self.listaAy[-1]*self.dt)
         self.listaVx.append(self.listaVx[-1] + self.listaAx[-1]*self.dt)
         self.listaY.append(self.listaY[-1] + self.listaVy[-1] * self.dt)
-        self.listaX.append(self.listaX[-1] + self.listaVx[0]*self.dt)
+        self.listaX.append(self.listaX[-1] + self.listaVx[-1]*self.dt)
         self.listaT.append(self.listaT[-1] + self.dt)
     
     def akceleracijaY_rk4(self, v = 0, x = 0, t = 0):

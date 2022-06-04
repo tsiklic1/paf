@@ -39,7 +39,7 @@ plt.show()
 
 
 def integrabilna_funkcija(x):
-    return x**2
+    return x**2 * 2 + 3
 
 listaGornjih = []
 listaDonjih = []

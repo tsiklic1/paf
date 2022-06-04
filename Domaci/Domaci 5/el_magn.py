@@ -103,14 +103,14 @@ class el_magn:
 # plt.show()
 
 
-def B(t):
-    bx = -0.7*t
-    by = 3
-    bz = np.tan(t)
-    return np.array((bx, by, bz))
+# def B(t):
+#     bx = -0.7*t
+#     by = 3
+#     bz = np.tan(t)
+#     return np.array((bx, by, bz))
 
-p1 = el_magn(B, -1., 1., np.array((0.1, 0.1, 0.1)), np.array((0.,0.,0.)), np.array((0., 0., 1.)))
-p1.trajectory_f()
+# p1 = el_magn(B, -1., 1., np.array((0.1, 0.1, 0.1)), np.array((0.,0.,0.)), np.array((0., 0., 1.)))
+# p1.trajectory_f()
 
 # fig = plt.figure()
 # ax = plt.axes(projection = "3d")

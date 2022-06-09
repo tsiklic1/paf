@@ -2,16 +2,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import universe as universe
+from matplotlib.animation import PillowWriter
+import math
 
 au = 1.496 * 10**(11)
 day = 60*60*24
 year = 365.242*day
 
-sun = universe.Planet("Sun", 1.989 * 10**30, np.array((0.,0.)), np.array((0.,0.)))
-mercury = universe.Planet("Merkur", 3.3 * 10**24, np.array((0., 0.466*au)), np.array((-47362., 0.)))
-venus = universe.Planet("Venus", 4.8685*10**24, np.array((0.723*au, 0.)), np.array((0., 35020.)))
-earth = universe.Planet("Earth", 5.9742 * 10**24, np.array((float(-1. * au), 0.)), np.array((0., float(-29783))))
-mars = universe.Planet("Mars", 6.417*10**23, np.array((0., -1.666*au)), np.array((24007., 0.)))
+sun = universe.Planet("Sun", "yellow", 1.989 * 10**30, np.array((0.,0.)), np.array((0.,0.)))
+mercury = universe.Planet("Merkur", "brown", 3.3 * 10**24, np.array((0., 0.466*au)), np.array((-47362., 0.)))
+venus = universe.Planet("Venus", "black", 4.8685*10**24, np.array((0.723*au, 0.)), np.array((0., 35020.)))
+earth = universe.Planet("Earth", "blue", 5.9742 * 10**24, np.array((float(-1. * au), 0.)), np.array((0., float(-29783))))
+mars = universe.Planet("Mars","red", 6.417*10**23, np.array((0., -1.666*au)), np.array((24007., 0.)))
 
 
 svemir = universe.Universe()
@@ -25,25 +27,21 @@ svemir.trajectory(1)
 
 fig = plt.figure()
 
-lines = plt.plot([])
-line = lines[0]
-plt.xlim(-1.1*au, 1-1*au)
-plt.ylim(-1.1*au, 1.1*au)
+metadata = dict(title="Movie", artist = "Toma")
+writer = PillowWriter(fps=15, metadata=metadata)
 
-def animate(frame):
-    x = earth.listaX[frame]
-    y = earth.listaY[frame]
-    line.set_data((x, y))
-    return line,
+with writer.saving(fig, "universe.gif", 100):
+    for i in range(len(mercury.listaX)):
+        if i%5 == 0:
+            plt.clf()
+            for j in svemir.planets:
+                
+                plt.plot(j.listaX[:i], j.listaY[:i], color =j.color)
+                plt.scatter(j.listaX[i], j.listaY[i], color=j.color)
 
-anim = animation.FuncAnimation(fig, animate, 100, )
-plt.show()
+            plt.xlim(-2*au, 2*au)
+            plt.ylim(-2*au, 2*au)
 
-# fig, axs = plt.subplots()
-# axs.set_aspect("equal")
-# axs.plot(earth.listaX, earth.listaY)
-# axs.scatter(sun.listaX, sun.listaY, color = "yellow")
-# axs.plot(mercury.listaX, mercury.listaY)
-# axs.plot(venus.listaX, venus.listaY)
-# axs.plot(mars.listaX, mars.listaY)
-# plt.show()
+            writer.grab_frame()
+
+

@@ -2,8 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class Planet:
-    def __init__(self, name, m, r, v):
+    def __init__(self, name, color, m, r, v):
         self.name = name
+        self.color = color
         self.m = m
         self.r = r
         self.v = v
@@ -15,7 +16,7 @@ class Universe:
     def __init__(self):
         self.planets = []
         self.G = 6.67408 * 10**(-11)
-        self.dt = 3600 * 24 * 0.1
+        self.dt = 3600 * 24
         self.duration = 0
 
     def add_planet(self, planet):
